@@ -8,3 +8,6 @@ for casting, and the for-each loop.
 
 Start from the initial commit of code so you can perform
 the refactorings yourself.
+
+The runnable class movierental.CustomerDemo shows what the
+code does.
