@@ -1,10 +1,7 @@
 package movierental;
 
-import movierental.domain.*;
 /**
  * Demo the use of Customer statement function.
- * @author jim
- *
  */
 public class StatementDemo {
 	public static void main(String[] args) {

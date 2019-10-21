@@ -1,4 +1,4 @@
-package movierental.domain;
+package movierental;
 
 import static org.junit.Assert.*;
 

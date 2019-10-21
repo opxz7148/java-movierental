@@ -1,4 +1,4 @@
-package movierental.domain;
+package movierental;
 /**
  * A rental of a movie by customer.
  * From Fowler's refactoring example.

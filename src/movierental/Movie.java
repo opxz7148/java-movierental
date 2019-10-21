@@ -1,4 +1,4 @@
-package movierental.domain;
+package movierental;
 /**
  * A movie available for rent.
  */
