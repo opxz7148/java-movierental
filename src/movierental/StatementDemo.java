@@ -6,13 +6,13 @@ package movierental;
 public class StatementDemo {
 	public static void main(String[] args) {
 		Movie[] movies = new Movie[] {
-				new Movie("Bridge of Spies", Movie.NEW_RELEASE),
+				new Movie("The Irishman", Movie.NEW_RELEASE),
 				new Movie("CitizenFour", Movie.REGULAR),
 				new Movie("Frozen", Movie.CHILDRENS),
 				new Movie("El Camino", Movie.NEW_RELEASE),
 				new Movie("Particle Fever", Movie.REGULAR)
 		};
-		Customer cust = new Customer("Edwin Snowden");
+		Customer cust = new Customer("Edward Snowden");
 		for(Movie m: movies) {
 			cust.addRental(new Rental(m, days));
 			days++;
