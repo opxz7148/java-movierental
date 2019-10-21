@@ -1,6 +1,28 @@
+# java stuff
 bin/
 *.class
+# python stuff
+__pycache__/
+*.py[cod]
+/build
+# Virtualenv is recreated as needed. Don't commit.
+venv/
+env/
+# Misc stuff
+solution/
+pizzasize.py
+# code coverage
+.coverage
+htmlcov/
+coverage
 
+# IDE and MacOS files
+.idea/
+*.iml
+.project
+.pydevproject
+.vscode/
+.DSStore
 # Eclipse files
 .project
 .settings
