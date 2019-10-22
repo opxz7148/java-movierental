@@ -2,12 +2,12 @@ class Rental:
 	"""
 	A rental of a movie by customer.
 	From Fowler's refactoring example.
-  
-	Rental should have fields and methods for the dates
+
+	A realistic Rental would have fields for the dates
 	that the movie was rented and returned, from which the
 	rental period is calculated.
-	But for simplicity of the example only a daysRented
-	field is shown.
+	But for simplicity of the example only a days_rented
+	field is used.
 	"""
 	
 	def __init__(self, movie, days_rented): 

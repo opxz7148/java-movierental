@@ -1,27 +1,27 @@
 from rental import Rental
 from movie import Movie
 import logging
-"""
-   A customer who rents movies.
-   The customer object holds information about the
-   movies rented for the current billing period,
-   and can print a statement of his rentals.
-"""
-class Customer:
 
+class Customer:
+	"""
+       A customer who rents movies.
+       The customer object holds information about the
+       movies rented for the current billing period,
+       and can print a statement of his rentals.
+    """
 	def __init__(self, name: str):
 		""" Initialize a new customer."""
 		self.name = name
 		self.rentals = []
 
-	def addRental(self, rental: Rental):
+	def add_rental(self, rental: Rental):
 		if rental not in self.rentals:
 			self.rentals.append(rental)
 	
 	def get_name(self):
 		return self.name
 	
-	def createStatement(self):
+	def create_statement(self):
 		"""
 			Print all the rentals in current period, 
 			along with total charges and reward points.
@@ -74,9 +74,9 @@ class Customer:
 
 if __name__ == "__main__":
 	customer = Customer("Edward Snowden")
-	print( customer.createStatement() )
+	print(customer.create_statement())
 	movie = Movie("Hacker Noon", Movie.REGULAR)
-	customer.addRental( Rental(movie, 2) )
+	customer.add_rental(Rental(movie, 2))
 	movie = Movie("CitizenFour", Movie.NEW_RELEASE)
-	customer.addRental( Rental(movie, 3) )
-	print( customer.createStatement() )
+	customer.add_rental(Rental(movie, 3))
+	print(customer.create_statement())
