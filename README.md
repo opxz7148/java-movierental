@@ -40,9 +40,8 @@ it is referenced in the original code. It changes from:
     // Customer class:
     charge = rental.getCharge();
     ```
-3. *Replace temp variable with a query*.  Instead of assigning the result of `rental.getCharge()`
-to a local variable (`charge` in above code snippet) and using `charge` in the code, he invokes `rental.getCharge()`
-wherever the value is needed.  This removes the local variable but results to multiple method calls for the same thing.
+3. *Replace temp variable with a query*.  Instead of using `charge = rental.getCharge()` (assign to a temp variable) and using `charge` in the code, he directly invokes `rental.getCharge()` wherever the value is needed. 
+This removes the local variable but results to multiple method calls for the same thing.
 4. Refactor summation of frequent renter points to a separate method.
 5. *Replace Conditional Logic with Polymorphism*. He replaces the "switch" statement for movie price codes
 with polymorphism, in two steps.  The first step is to make the Movie class compute its own frequent renter points,
@@ -53,7 +52,7 @@ and then have it delegate that task to a Strategy (or State) object.
       contain methods for calculating rental charge and frequent renter points for each price code. 
       Instead of a constant for price code he uses objects from those classes.
 
-6. *The Missing Refactoring*.  In the final code the `Customer` class still needs a *Move Method* refactoring to remove
+6. *The Missing Refactoring*.  In the final code the Customer class still needs a *Move Method* refactoring to remove
 some unrelated behavior, in my opinion.  What do you think?
 
 [refactoring_ch1]: refactoring-movierental.pdf
