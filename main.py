@@ -23,4 +23,4 @@ if __name__ == '__main__':
     for movie in make_movies():
         customer.add_rental(Rental(movie, days))
         days += 1
-    print(customer.create_statement())
+    print(customer.statement())
