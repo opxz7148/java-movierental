@@ -34,7 +34,7 @@ public class Customer {
 	 * along with total charges and reward points.
 	 * @return the statement as a String
 	 */
-	public String createStatement() {
+	public String statement() {
 		double amount = 0; // total charges
 		int frequentRenterPoints = 0; // frequent renter points
 		StringBuilder stmt = new StringBuilder("Rental Report for "+getName()).append("\n\n");

@@ -12,11 +12,11 @@ public class StatementDemo {
 				new Movie("El Camino", Movie.NEW_RELEASE),
 				new Movie("Particle Fever", Movie.REGULAR)
 		};
-		Customer cust = new Customer("Edward Snowden");
+		Customer customer = new Customer("Edward Snowden");
 		for(Movie m: movies) {
-			cust.addRental(new Rental(m, days));
+			customer.addRental(new Rental(m, days));
 			days++;
 		}
-		System.out.println( cust.createStatement() );
+		System.out.println( customer.statement() );
 	}
 }
