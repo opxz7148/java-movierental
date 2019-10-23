@@ -33,7 +33,7 @@ public class CustomerTest {
 	
 	@Test
 	public void testStatement() {
-		String stmt = c.createStatement();
+		String stmt = c.statement();
 		System.out.println(stmt);
 		// a cludgy way of getting total charges from statement
 		Pattern matchCharges = Pattern.compile(".*Total [Cc]harges.*(\\d+\\.\\d\\d).*");

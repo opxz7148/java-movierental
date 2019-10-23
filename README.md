@@ -1,7 +1,7 @@
-## Movie Rentals Refactoring Example
+## Movie Rental Refactoring Example
 
-This is the example from [chapter 1][refactoring_ch1] 
-of _Refactoring: Improving the Design of Existing Code_ by Martin Fowler.  
+This [refactoring example][refactoring_ch1] is from Chapter 1 of
+_Refactoring: Improving the Design of Existing Code_ by Martin Fowler.  
 
 There are two branches in this repository:
 
@@ -55,4 +55,11 @@ and then have it delegate that task to a Strategy (or State) object.
 6. *The Missing Refactoring*.  In the final code the Customer class still needs a *Move Method* refactoring to remove
 some unrelated behavior, in my opinion.  What do you think?
 
-[refactoring_ch1]: refactoring-movierental.pdf
+[refactoring_ch1]: https://github.com/jbrucker/movierental/refactoring-movierental.pdf
+[refactoring_ch1]: https://github.com/jbrucker/movierental/refactoring-movierental.pdf
+[refactoring_pdf]: https://github.com/jbrucker/movierental/raw/master/refactoring-movierental.pdf
+
+## Resources
+
+* [Refactoring, First Example][refactoring_pdf] extract from Martin Fowler's book. [PDF in this repo][refactoring_ch1].
+* [Refactoring slides from U. Colorado](https://www.cs.colorado.edu/~kena/classes/6448/s05/lectures/lecture19.pdf) step-by-step instructions for Java version of this example, including UML class diagram of progress.
