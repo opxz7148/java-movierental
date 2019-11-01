@@ -6,7 +6,7 @@ _Refactoring: Improving the Design of Existing Code_ by Martin Fowler.
 There are two branches in this repository:
 
 * `java` contains Java source code, updated to use current Java features
-* `python` contains Python source, created by manually translating the Java code
+* `python` contains Python source, translated from the Java code
 
 The Java code has been updated to use features such as a List with type
 parameter instead of Vector and type casts, and the for-each loop. 
@@ -40,12 +40,12 @@ it is referenced in the original code. It changes from:
     // Customer class:
     charge = rental.getCharge();
     ```
-3. *Replace temp variable with a query*.  Instead of using `charge = rental.getCharge()` (assign to a temp variable) and using `charge` in the code, he directly invokes `rental.getCharge()` wherever the value is needed. 
+3. *Replace Temp Variable with a Query*.  Instead of using `charge = rental.getCharge()` (assign to a temp variable) and using `charge` in the code, he directly invokes `rental.getCharge()` wherever the value is needed. 
 This removes the local variable but results to multiple method calls for the same thing.
-4. Refactor summation of frequent renter points to a separate method.
+4. *Extract Method*. Refactor summation of frequent renter points to a separate method.
 5. *Replace Conditional Logic with Polymorphism*. He replaces the "switch" statement for movie price codes
 with polymorphism, in two steps.  The first step is to make the Movie class compute its own frequent renter points,
-and then have it delegate that task to a Strategy (or State) object.
+and then have it delegate that task to a Strategy object.
     * This is a long refactoring because he first uses inheritance and then explains why that's a poor solution.
     * This is summarized by the principle "*Prefer composition over inheritance*".
     * Fowler uses strategy classes named RegularPrice, ChildrensPrice, NewReleasePrice that
