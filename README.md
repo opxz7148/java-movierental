@@ -18,6 +18,7 @@ a statement.
 
 The [PDF from Chapter 1][refactoring_ch1] explains the 
 motivation for each refactoring and how to do it.
+
 To summarize, the refactorings are:
 
 1. *Extract Method*.  In Customer.statement() extract the code that
