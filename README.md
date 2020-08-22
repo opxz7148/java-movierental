@@ -61,5 +61,5 @@ some unrelated behavior, in my opinion.  What do you think?
 
 ## Resources
 
-* [Refactoring, First Example][refactoring_pdf] extract from Martin Fowler's book. [View PDF online][refactoring_ch1].
+* [Refactoring, First Example][refactoring_pdf] extract from Martin Fowler's *Refactoring* book. [View PDF online][refactoring_ch1].
 * [Refactoring slides from U. Colorado](https://www.cs.colorado.edu/~kena/classes/6448/s05/lectures/lecture19.pdf) step-by-step instructions for Java version of this example, including UML class diagram of progress.
