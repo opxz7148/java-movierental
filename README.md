@@ -19,10 +19,10 @@ a statement.
 The [PDF from Chapter 1][refactoring_ch1] explains the 
 motivation for each refactoring and how to do it.
 
-To summarize, the refactorings are:
+In Java, the refactorings are:
 
-1. *Extract Method*.  In Customer.statement() extract the code that
- calculates the price of each rental.
+1. *Extract Method*.  In Customer.statement() extract the code that calculates the price of each rental.
+   - Make it a separate method.
 2. *Move Method*. After extracting a method to calculate the price of a rental,
 Fowler observes that the method uses information about the rental but not 
 about the customer.  Hence, the method should be in the `Rental` class instead
@@ -44,7 +44,7 @@ of `Customer` class.
     ```
 3. *Replace Temp Variable with a Query*.  Instead of using `charge = rental.getCharge()` (assign to a temp variable) and using `charge` in the code, directly invoke `rental.getCharge()` wherever the value is needed. 
    - This removes the local variable but results to multiple method calls for the same thing.
-   - Personally, I prefer to avoid duplicate method calls.
+   - Personally, I prefer using a temporary variable instead of duplicate method calls.
 4. *Extract Method*. Refactor summation of frequent renter points to a separate method.
 5. *Replace Conditional Logic with Polymorphism*.  Replaces the "switch" statement for movie price codes with polymorphism, in two steps.
    - The first step is to make the Movie class compute its own frequent renter points.
@@ -56,6 +56,29 @@ of `Customer` class.
 
 6. *The Missing Refactoring*.  In the final code the Customer class still needs a *Move Method* refactoring to remove some unrelated behavior, in my opinion.  
    - What do you think?
+
+For Python, the refactoring are the same, but some details are different.
+* method names should use Python naming convention
+* Python does not require creating an interface for strategy. If you want to write code like Java, you can create an abstract superclass (`PriceStrategy`) for the interface with methods that return 0.  `RegularPrice`, etc., are concrete subclasses. 
+* Another solution in Python is to use an Enum. 
+  - Each member of the enum is one pricing strategy (normal, childrens, new\_release).
+  - Each enum member is a dict, and the *values* in the dict are lambdas to compute the price and frequent renter points.
+    ```python
+    from enum import Enum
+    class PriceCode(Enum):
+        """An enumeration for different kinds of pricing"""
+        new_release = { "price": lambda days: 3.0*days, 
+                        "frp": lambda days: days
+                      }
+        ...
+
+        def price(self, days: int) -> float:
+            "Return the rental price for a given number of days"""
+            pricing = self.value["price"]  
+            return pricing(days)
+    ```
+        
+
 
 [refactoring_ch1]: https://github.com/jbrucker/movierental/blob/master/refactoring-movierental.pdf
 [refactoring_pdf]: https://github.com/jbrucker/movierental/raw/master/refactoring-movierental.pdf
