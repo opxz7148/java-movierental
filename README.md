@@ -19,16 +19,18 @@ a statement.
 The [PDF from Chapter 1][refactoring_ch1] explains the 
 motivation for each refactoring and how to do it.
 
-To summarize, the refactorings are:
+Before refactoring and after each refactoring you should **run the unit tests**.
 
-1. *Extract Method*.  In Customer.statement() extract the code that
- calculates the price of each rental.
+The refactorings are (filenames refer to Java version):
+
+1. *Extract Method*.  In Customer.statement() extract the code that calculates the price of each rental.
+   - Make it a separate method.
 2. *Move Method*. After extracting a method to calculate the price of a rental,
 Fowler observes that the method uses information about the rental but not 
 about the customer.  Hence, the method should be in the `Rental` class instead
 of `Customer` class. 
-   - Move the method to the `Rental` class.
-   - Verify the IDE updates the way the method is referenced in code.  It changes from:
+   - Move the method to the `Rental` class. A good IDE has a refactoring tool to do this for you.
+   - After the change, verify that the method is referenced correctly in code.  It changes from:
     ```java
     // Customer class:
     public double amountFor(Rental rental) { ... }
@@ -44,7 +46,7 @@ of `Customer` class.
     ```
 3. *Replace Temp Variable with a Query*.  Instead of using `charge = rental.getCharge()` (assign to a temp variable) and using `charge` in the code, directly invoke `rental.getCharge()` wherever the value is needed. 
    - This removes the local variable but results to multiple method calls for the same thing.
-   - Personally, I prefer to avoid duplicate method calls.
+   - Personally, I prefer using a temporary variable instead of duplicate method calls.
 4. *Extract Method*. Refactor summation of frequent renter points to a separate method.
 5. *Replace Conditional Logic with Polymorphism*.  Replaces the "switch" statement for movie price codes with polymorphism, in two steps.
    - The first step is to make the Movie class compute its own frequent renter points.
@@ -56,6 +58,38 @@ of `Customer` class.
 
 6. *The Missing Refactoring*.  In the final code the Customer class still needs a *Move Method* refactoring to remove some unrelated behavior, in my opinion.  
    - What do you think?
+
+In Python, the refactoring are the same, but some details are different.
+
+* method names should use Python naming convention
+* Python does not require creating an interface for strategy. If you want to write code like Java, you can create an abstract superclass (`PriceStrategy`) for the interface with methods that return 0.  `RegularPrice`, etc., are concrete subclasses. 
+* Another way to implement Strategy in Python is to use an Enum. 
+  - Each member of the enum is one pricing strategy (normal, childrens, new\_release).
+  - Each enum member is a dict, and the *values* in the dict are lambdas to compute the price and frequent renter points.  In this way, each number member can define it's own function for pricing and frequent renter points.
+    ```python
+    from enum import Enum
+
+    class PriceCode(Enum):
+        """An enumeration for different kinds of movies and their behavior"""
+        new_release = { "price": lambda days: 3.0*days, 
+                        "frp": lambda days: days
+                      }
+        normal = { "price": lambda days: ...,
+                   "frp": lambda days: ...
+                 }
+        ...
+
+        def price(self, days: int) -> float:
+            "Return the rental price for a given number of days"""
+            pricing = self.value["price"]  
+            return pricing(days)
+    ```
+   - The method `price` (shown above) uses the enum member's dict (`values`) to get the lambda expression it should use to compute the rental price, then uses that lambda to compute the actual price.
+   - To reference a member of the PriceCode enum, you write:
+     ```python
+     movie_type = PriceCode.new_release
+     print("Rental price for 3 days:", movie_type.price(3))
+     ```
 
 [refactoring_ch1]: https://github.com/jbrucker/movierental/blob/master/refactoring-movierental.pdf
 [refactoring_pdf]: https://github.com/jbrucker/movierental/raw/master/refactoring-movierental.pdf
