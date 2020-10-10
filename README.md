@@ -24,10 +24,11 @@ To summarize, the refactorings are:
 1. *Extract Method*.  In Customer.statement() extract the code that
  calculates the price of each rental.
 2. *Move Method*. After extracting a method to calculate the price of a rental,
-Fowler observe that the method uses information about the rental but not 
+Fowler observes that the method uses information about the rental but not 
 about the customer.  Hence, the method should be in the `Rental` class instead
-of `Customer` class. Moving the method to a different class requires changing how 
-it is referenced in the original code. It changes from:
+of `Customer` class. 
+   - Move the method to the `Rental` class.
+   - Verify the IDE updates the way the method is referenced in code.  It changes from:
     ```java
     // Customer class:
     public double amountFor(Rental rental) { ... }
@@ -41,20 +42,20 @@ it is referenced in the original code. It changes from:
     // Customer class:
     charge = rental.getCharge();
     ```
-3. *Replace Temp Variable with a Query*.  Instead of using `charge = rental.getCharge()` (assign to a temp variable) and using `charge` in the code, he directly invokes `rental.getCharge()` wherever the value is needed. 
-This removes the local variable but results to multiple method calls for the same thing.
+3. *Replace Temp Variable with a Query*.  Instead of using `charge = rental.getCharge()` (assign to a temp variable) and using `charge` in the code, directly invoke `rental.getCharge()` wherever the value is needed. 
+   - This removes the local variable but results to multiple method calls for the same thing.
+   - Personally, I prefer to avoid duplicate method calls.
 4. *Extract Method*. Refactor summation of frequent renter points to a separate method.
-5. *Replace Conditional Logic with Polymorphism*. He replaces the "switch" statement for movie price codes
-with polymorphism, in two steps.  The first step is to make the Movie class compute its own frequent renter points,
-and then have it delegate that task to a Strategy object.
-    * This is a long refactoring because he first uses inheritance and then explains why that's a poor solution.
-    * This is summarized by the principle "*Prefer composition over inheritance*".
-    * Fowler uses strategy classes named RegularPrice, ChildrensPrice, NewReleasePrice that
-      contain methods for calculating rental charge and frequent renter points for each price code. 
-      Instead of a constant for price code he uses objects from those classes.
+5. *Replace Conditional Logic with Polymorphism*.  Replaces the "switch" statement for movie price codes with polymorphism, in two steps.
+   - The first step is to make the Movie class compute its own frequent renter points.
+   - The second step is have it delegate that task to a Strategy object.
+   - You define an interface (e.g. PriceStrategy) and concrete implementations for RegularPrice, ChildrensPrice, NewReleasePrice. The strategy interface also computes frequent renter points.
+   - Replace the constant for price code with objects from the strategy classes. 
+   - In Fowler's article, this is a long refactoring because he first uses inheritance and then explains why that's a poor solution.
+   - This refactoring uses the design principle "*Prefer composition over inheritance*".
 
-6. *The Missing Refactoring*.  In the final code the Customer class still needs a *Move Method* refactoring to remove
-some unrelated behavior, in my opinion.  What do you think?
+6. *The Missing Refactoring*.  In the final code the Customer class still needs a *Move Method* refactoring to remove some unrelated behavior, in my opinion.  
+   - What do you think?
 
 [refactoring_ch1]: https://github.com/jbrucker/movierental/blob/master/refactoring-movierental.pdf
 [refactoring_pdf]: https://github.com/jbrucker/movierental/raw/master/refactoring-movierental.pdf
