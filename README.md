@@ -1,6 +1,6 @@
 ## Movie Rental Refactoring Example
 
-This [refactoring example][refactoring_ch1] is from Chapter 1 of
+This [refactoring example][refactoring_pdf] is from Chapter 1 of
 _Refactoring: Improving the Design of Existing Code_ by Martin Fowler.  
 
 There are two branches in this repository:
@@ -16,7 +16,7 @@ which is more typical of current coding conventions.
 The runnable Main class (or Python `main.py`) creates a customer and prints 
 a statement.
 
-The [PDF from Chapter 1][refactoring_ch1] explains the 
+The [PDF from Chapter 1][refactoring_pdf] explains the 
 motivation for each refactoring and how to do it.
 
 Before refactoring and after each refactoring you should **run the unit tests**.
@@ -93,10 +93,9 @@ In Python, the refactoring are the same, but some details are different.
      print("Rental price for 3 days:", movie_type.price(3))
      ```
 
-[refactoring_ch1]: https://github.com/jbrucker/movierental/blob/master/refactoring-movierental.pdf
-[refactoring_pdf]: https://github.com/jbrucker/movierental/raw/master/refactoring-movierental.pdf
+[refactoring_pdf]: https://cpske.github.io/ISP/refactoring/refactoring-movierental.pdf
 
 ## Resources
 
-* [Refactoring, First Example][refactoring_pdf] extract from Martin Fowler's *Refactoring* book. [View PDF online][refactoring_ch1].
+* [Refactoring, First Example][refactoring_pdf] extract from Martin Fowler's *Refactoring* book. 
 * [Refactoring slides from U. Colorado](https://www.cs.colorado.edu/~kena/classes/6448/s05/lectures/lecture19.pdf) step-by-step instructions for Java version of this example, including UML class diagram of progress.
