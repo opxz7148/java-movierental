@@ -19,7 +19,12 @@ a statement.
 The [PDF from Chapter 1][refactoring_pdf] explains the 
 motivation for each refactoring and how to do it.
 
-Before refactoring and after each refactoring you should **run the unit tests**.
+## Instructions
+
+- Check out either the `java` or `python` branch (your choice).
+- Perform the 5 refactorings listed below, and optionally the 6th "missing" refactoring.
+- Before starting to refactor, run the units tests. They should all pass.
+- After each refactoring **run the unit tests** again. They should still pass.
 
 The refactorings are (filenames refer to Java version):
 
@@ -61,10 +66,12 @@ of `Customer` class.
 6. *The Missing Refactoring*.  In the final code the `Customer` class still needs a *Move Method* refactoring to remove some unrelated behavior, in my opinion.  
    - What do you think?
 
+### Python Version
+
 In Python, the refactoring are the same, but some details are different.
 
 * method names should use Python naming convention
-* Python does not require creating an interface for strategy. If you want to write code like Java, you can create an abstract superclass (`PriceStrategy`) for the interface with methods that return 0.  `RegularPrice`, etc., are concrete subclasses. 
+* Python does not require creating an interface for strategy. If you want to write code like Java, you can create an abstract superclass (`PriceStrategy`) for the interface with methods that return 0.  `RegularPrice`, etc., are concrete subclasses of `PriceStrategy`. 
 * Another way to implement Strategy in Python is to use an Enum. 
   - Each member of the enum is one pricing strategy (normal, childrens, new\_release).
   - Each enum member is a dict, and the *values* in the dict are lambdas to compute the price and frequent renter points.  In this way, each number member can define it's own function for pricing and frequent renter points.
@@ -79,17 +86,19 @@ In Python, the refactoring are the same, but some details are different.
         normal = { "price": lambda days: ...,
                    "frp": lambda days: ...
                  }
-        ...
+        childrens = { ... 
+                 }
 
         def price(self, days: int) -> float:
             "Return the rental price for a given number of days"""
             pricing = self.value["price"]    # the enum member's price formula
             return pricing(days)
     ```
-   - The Enum provides methods for `price` and renter points, and *delegate* those methods to the enum member (which is referenced by `self`).  The `price` metho (shown above) uses the enum member's dict (`values`) to get a lambda expression it should use to compute the rental price, then uses that lambda to compute the actual price.
+   - The Enum provides methods for `price` and renter points, and *delegates* those methods to the enum member (which is referenced by `self`).  The `price` metho (shown above) uses the enum member's dict (`values`) to get a lambda expression it should use to compute the rental price, then uses that lambda to compute the actual price.
    - To reference a member of the PriceCode enum, you write:
      ```python
      movie_type = PriceCode.new_release
+     # invoke a method of PriceCode
      print("Rental price for 3 days:", movie_type.price(3))
      ```
 
