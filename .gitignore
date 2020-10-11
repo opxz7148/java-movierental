@@ -1,10 +1,10 @@
 # java stuff
 bin/
+build
 *.class
 # python stuff
 __pycache__/
 *.py[cod]
-/build
 # Virtualenv is recreated as needed. Don't commit.
 venv/
 env/
