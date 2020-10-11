@@ -44,10 +44,12 @@ of `Customer` class.
     // Customer class:
     charge = rental.getCharge();
     ```
+    - write a unit test for this method.
 3. *Replace Temp Variable with a Query*.  Instead of using `charge = rental.getCharge()` (assign to a temp variable) and using `charge` in the code, directly invoke `rental.getCharge()` wherever the value is needed. 
    - This removes the local variable but results to multiple method calls for the same thing.
    - Personally, I prefer using a temporary variable instead of duplicate method calls.
 4. *Extract Method*. Refactor summation of frequent renter points to a separate method.
+   - write a unit test for this new method
 5. *Replace Conditional Logic with Polymorphism*.  Replaces the "switch" statement for movie price codes with polymorphism, in two steps.
    - The first step is to make the Movie class compute its own frequent renter points.
    - The second step is have it delegate that task to a Strategy object.
@@ -56,7 +58,7 @@ of `Customer` class.
    - In Fowler's article, this is a long refactoring because he first uses inheritance and then explains why that's a poor solution.
    - This refactoring uses the design principle "*Prefer composition over inheritance*".
 
-6. *The Missing Refactoring*.  In the final code the Customer class still needs a *Move Method* refactoring to remove some unrelated behavior, in my opinion.  
+6. *The Missing Refactoring*.  In the final code the `Customer` class still needs a *Move Method* refactoring to remove some unrelated behavior, in my opinion.  
    - What do you think?
 
 In Python, the refactoring are the same, but some details are different.
@@ -81,10 +83,10 @@ In Python, the refactoring are the same, but some details are different.
 
         def price(self, days: int) -> float:
             "Return the rental price for a given number of days"""
-            pricing = self.value["price"]  
+            pricing = self.value["price"]    # the enum member's price formula
             return pricing(days)
     ```
-   - The method `price` (shown above) uses the enum member's dict (`values`) to get the lambda expression it should use to compute the rental price, then uses that lambda to compute the actual price.
+   - The Enum provides methods for `price` and renter points, and *delegate* those methods to the enum member (which is referenced by `self`).  The `price` metho (shown above) uses the enum member's dict (`values`) to get a lambda expression it should use to compute the rental price, then uses that lambda to compute the actual price.
    - To reference a member of the PriceCode enum, you write:
      ```python
      movie_type = PriceCode.new_release
