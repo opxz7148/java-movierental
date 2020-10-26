@@ -104,6 +104,10 @@ In Python, the refactoring are the same, but some details are different.
 
 [refactoring_pdf]: https://cpske.github.io/ISP/refactoring/refactoring-movierental.pdf
 
+### MovieCatalog
+
+![MovieCatalog UML diagram](movie-uml.png)
+
 ## Resources
 
 * [Refactoring, First Example][refactoring_pdf] extract from Martin Fowler's *Refactoring* book. 
