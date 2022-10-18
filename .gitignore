@@ -5,7 +5,7 @@ build/
 # python stuff
 __pycache__/
 *.py[cod]
-# Virtualenv is recreated as needed. Don't commit.
+# Virtualenv is recreated as needed.
 env/
 virtualenv/
 venv/
@@ -21,6 +21,5 @@ coverage
 .project
 .pydevproject
 .settings
-.vscode
-# misc junk
+.vscode/
 .DSStore
