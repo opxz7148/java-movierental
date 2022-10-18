@@ -6,8 +6,7 @@ class Rental:
 	A realistic Rental would have fields for the dates
 	that the movie was rented and returned, from which the
 	rental period is calculated.
-	But for simplicity of the example only a days_rented
-	field is used.
+	For simplicity of this application only days_rented is recorded.
 	"""
 	
 	def __init__(self, movie, days_rented): 

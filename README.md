@@ -17,7 +17,7 @@ The runnable Main class (or Python `main.py`) creates a customer and prints
 a statement.
 
 The [PDF from Chapter 1][refactoring_pdf] explains the 
-motivation for each refactoring and how to do it.
+motivation for each refactoring and how to do it.  Please read it.
 
 Before refactoring and after each refactoring you should **run the unit tests**.
 
@@ -29,7 +29,7 @@ The refactorings are (filenames refer to Java version):
 Fowler observes that the method uses information about the rental but not 
 about the customer.  Hence, the method should be in the `Rental` class instead
 of `Customer` class. 
-   - Move the method to the `Rental` class. A good IDE has a refactoring tool to do this for you.
+   - Move the method to the `Rental` class. A good IDE refactoring tool to do this for you.
    - After the change, verify that the method is referenced correctly in code.  It changes from:
     ```java
     // Customer class:
@@ -45,21 +45,27 @@ of `Customer` class.
     charge = rental.getCharge();
     ```
     - write a unit test for this method.
+
 3. *Replace Temp Variable with a Query*.  Instead of using `charge = rental.getCharge()` (assign to a temp variable) and using `charge` in the code, directly invoke `rental.getCharge()` wherever the value is needed. 
    - This removes the local variable but results to multiple method calls for the same thing.
    - Personally, I prefer using a temporary variable instead of duplicate method calls.
+
 4. *Extract Method*. Refactor summation of frequent renter points to a separate method.
    - write a unit test for this new method
-5. *Replace Conditional Logic with Polymorphism*.  Replaces the "switch" statement for movie price codes with polymorphism, in two steps.
-   - The first step is to make the Movie class compute its own frequent renter points.
-   - The second step is have it delegate that task to a Strategy object.
-   - You define an interface (e.g. PriceStrategy) and concrete implementations for RegularPrice, ChildrensPrice, NewReleasePrice. The strategy interface also computes frequent renter points.
+
+5. *Replace Conditional Logic with Polymorphism*.  Replaces the "switch" statement for movie price codes with polymorphism. Do this in **two steps**.
+   - Step 1: make the Movie class compute its own frequent renter points.
+   - Step 2: have it delegate that task to a Strategy object.
+   - You define an interface (e.g. PriceStrategy) and concrete implementations for RegularPrice, ChildrensPrice, and NewReleasePrice. The strategy interface also computes frequent renter points using a separate method.
    - Replace the constant for price code with objects from the strategy classes. 
    - In Fowler's article, this is a long refactoring because he first uses inheritance and then explains why that's a poor solution.
-   - This refactoring uses the design principle "*Prefer composition over inheritance*".
+   - This refactoring uses the principle "*Prefer composition over inheritance*".
 
 6. *The Missing Refactoring*.  In the final code the `Customer` class still needs a *Move Method* refactoring to remove some unrelated behavior, in my opinion.  
    - What do you think?
+   - What method should move?
+
+### Notes on Python Version
 
 In Python, the refactoring are the same, but some details are different.
 
@@ -93,9 +99,9 @@ In Python, the refactoring are the same, but some details are different.
      print("Rental price for 3 days:", movie_type.price(3))
      ```
 
-[refactoring_pdf]: https://cpske.github.io/ISP/refactoring/refactoring-movierental.pdf
+[refactoring_pdf]: https://cpske.github.io/ISP/refactoring/Refactoring-movierental.pdf
 
 ## Resources
 
 * [Refactoring, First Example][refactoring_pdf] extract from Martin Fowler's *Refactoring* book. 
-* [Refactoring slides from U. Colorado](https://www.cs.colorado.edu/~kena/classes/6448/s05/lectures/lecture19.pdf) step-by-step instructions for Java version of this example, including UML class diagram of progress.
+* [Refactoring slides from U. Colorado](https://www.cs.colorado.edu/~kena/classes/6448/s05/lectures/lecture19.pdf) step-by-step instructions for Java version of this example, including UML class diagrams of progress.
