@@ -1,5 +1,7 @@
 ## Movie Rental Refactoring Example
 
+[![Unittests](https://github.com/jbrucker/movierental/actions/workflows/python-testing.yml/badge.svg?branch=python)](https://github.com/jbrucker/movierental/actions/workflows/python-testing.yml)
+
 This [refactoring example][refactoring_pdf] is from Chapter 1 of
 _Refactoring: Improving the Design of Existing Code_ by Martin Fowler.  
 
