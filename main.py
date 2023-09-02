@@ -1,5 +1,6 @@
-# Demonstrate the movie rental code.
-# Create a customer with some movies and print a statement.
+"""Demonstrate the movie rental code.
+   Create a customer with some movies and print a statement.
+"""
 
 from movie import Movie
 from rental import Rental
