@@ -2,7 +2,6 @@ package movierental;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * A customer who rents movies.
@@ -30,27 +29,6 @@ public class Customer {
 		return name;
 	}
 
-	private double rentalPriceCalculate(Rental rental){
-		double thisAmount = 0;
-			// compute rental change
-			switch( rental.getMovie().getPriceCode() ) {
-			case Movie.REGULAR:
-				thisAmount += 2;
-				if (rental.getDaysRented() > 2) thisAmount += 1.5*(rental.getDaysRented()-2);
-				break;
-			case Movie.CHILDRENS:
-				thisAmount = 1.5;
-				if (rental.getDaysRented() > 3) thisAmount += 1.5*(rental.getDaysRented()-3);
-				break;
-			case Movie.NEW_RELEASE:
-				thisAmount = 3*rental.getDaysRented();
-				break;
-			default:
-				getLogger().warning("Movie "+rental.getMovie()+" has unrecognized priceCode "+rental.getMovie().getPriceCode());
-			}
-		return thisAmount;
-	}
-	
 	/** Print all the rentals in current period, 
 	 * along with total charges and reward points.
 	 * @return the statement as a String
@@ -68,7 +46,7 @@ public class Customer {
 			else frequentRenterPoints++;
 			
 			// one line of detail for this movie
-			double thisAmount = rentalPriceCalculate(rental);
+			double thisAmount = rental.calculatedRentalFee();
 			stmt.append(String.format("%-40.40s %3d %8.2f\n", rental.getMovie().getTitle(), rental.getDaysRented(), thisAmount));
 			amount += thisAmount;
 		}
@@ -78,10 +56,4 @@ public class Customer {
 		
 		return stmt.toString();
 	}
-
-	/** Get a logger object. */
-	private static Logger getLogger() {
-		return Logger.getLogger(Customer.class.getName());
-	}
-	
 }
