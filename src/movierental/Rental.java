@@ -1,5 +1,4 @@
 package movierental;
-import java.util.logging.Logger;
 
 /**
  * A rental of a movie by customer.
