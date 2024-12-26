@@ -1,9 +1,8 @@
 package movierental;
-
 /**
  * Demo the use of Customer statement function.
  */
-public class StatementDemo {
+public class Main {
 	public static void main(String[] args) {
 		Movie[] movies = new Movie[] {
 				new Movie("The Irishman", Movie.NEW_RELEASE),
@@ -13,6 +12,7 @@ public class StatementDemo {
 				new Movie("Particle Fever", Movie.REGULAR)
 		};
 		Customer customer = new Customer("Edward Snowden");
+		int days = 1;
 		for(Movie m: movies) {
 			customer.addRental(new Rental(m, days));
 			days++;
