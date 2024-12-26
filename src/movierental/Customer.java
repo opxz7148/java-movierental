@@ -29,20 +29,9 @@ public class Customer {
 	public String getName() {
 		return name;
 	}
-	
-	/** Print all the rentals in current period, 
-	 * along with total charges and reward points.
-	 * @return the statement as a String
-	 */
-	public String statement() {
-		double amount = 0; // total charges
-		int frequentRenterPoints = 0; // frequent renter points
-		StringBuilder stmt = new StringBuilder("Rental Report for "+getName()).append("\n\n");
-		// header for details section
-		stmt.append(String.format("%-40.40s %4s %-8s\n", "Movie Title", "Days", "Price"));
-		
-		for(Rental rental: rentals) {
-			double thisAmount = 0;
+
+	private double rentalPriceCalculate(Rental rental){
+		double thisAmount = 0;
 			// compute rental change
 			switch( rental.getMovie().getPriceCode() ) {
 			case Movie.REGULAR:
@@ -59,11 +48,27 @@ public class Customer {
 			default:
 				getLogger().warning("Movie "+rental.getMovie()+" has unrecognized priceCode "+rental.getMovie().getPriceCode());
 			}
+		return thisAmount;
+	}
+	
+	/** Print all the rentals in current period, 
+	 * along with total charges and reward points.
+	 * @return the statement as a String
+	 */
+	public String statement() {
+		double amount = 0; // total charges
+		int frequentRenterPoints = 0; // frequent renter points
+		StringBuilder stmt = new StringBuilder("Rental Report for "+getName()).append("\n\n");
+		// header for details section
+		stmt.append(String.format("%-40.40s %4s %-8s\n", "Movie Title", "Days", "Price"));
+		
+		for(Rental rental: rentals) {
 			// award renter points for each rental
 			if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) frequentRenterPoints += rental.getDaysRented();
 			else frequentRenterPoints++;
 			
 			// one line of detail for this movie
+			double thisAmount = rentalPriceCalculate(rental);
 			stmt.append(String.format("%-40.40s %3d %8.2f\n", rental.getMovie().getTitle(), rental.getDaysRented(), thisAmount));
 			amount += thisAmount;
 		}
