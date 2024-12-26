@@ -42,11 +42,10 @@ public class Customer {
 		
 		for(Rental rental: rentals) {
 			// award renter points for each rental
-			if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) frequentRenterPoints += rental.getDaysRented();
-			else frequentRenterPoints++;
+			frequentRenterPoints += rental.getFrequentRenterPoints();
 			
 			// one line of detail for this movie
-			double thisAmount = rental.calculatedRentalFee();
+			double thisAmount = rental.getRentalFee();
 			stmt.append(String.format("%-40.40s %3d %8.2f\n", rental.getMovie().getTitle(), rental.getDaysRented(), thisAmount));
 			amount += thisAmount;
 		}

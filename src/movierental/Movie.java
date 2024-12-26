@@ -4,17 +4,17 @@ package movierental;
  */
 public class Movie {
 	/** The classes of movies. */
-	public static final int REGULAR = 0;
-	public static final int NEW_RELEASE = 1;
-	public static final int CHILDRENS = 2;
+	public static final Price REGULAR = new RegularPrice();
+	public static final Price NEW_RELEASE = new NewReleasePrice();
+	public static final Price CHILDRENS = new ChildrenPrice();
 	
 	/** movie price code based on classification */
-	private int priceCode;
+	private Price priceCode;
 	/** the title, of course */
 	private String title;
 	
 	/** Initialize a new movie. */
-	public Movie(String title, int priceCode) {
+	public Movie(String title, Price priceCode) {
 		this.title = title;
 		this.priceCode = priceCode;
 	}
@@ -22,14 +22,14 @@ public class Movie {
 	/**
 	 * @return the priceCode
 	 */
-	public int getPriceCode() {
+	public Price getPriceCode() {
 		return priceCode;
 	}
 
 	/**
 	 * @param priceCode the priceCode to set
 	 */
-	public void setPriceCode(int priceCode) {
+	public void setPriceCode(Price priceCode) {
 		this.priceCode = priceCode;
 	}
 	
