@@ -1,3 +1,9 @@
+# Movie Rental Program for learning Java basic
+Base on [Refactoring, First Example][refactoring_pdf] extract from Martin Fowler's *Refactoring* book. [View PDF online][refactoring_ch1].
+And [James Brucker](https://github.com/jbrucker) code
+
+
+# README from original repositories.
 ## Movie Rental Refactoring Example
 
 This [refactoring example][refactoring_ch1] is from Chapter 1 of
