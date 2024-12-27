@@ -1,6 +1,7 @@
 # Movie Rental Program for learning Java basic
 Base on [Refactoring, First Example][refactoring_pdf] extract from Martin Fowler's *Refactoring* book. [View PDF online][refactoring_ch1].
 And [James Brucker](https://github.com/jbrucker) code
+Change are in java branch
 
 
 # README from original repositories.
